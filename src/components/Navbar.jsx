@@ -1,0 +1,4 @@
+export default function Navbar({ page, goHome, go, demoMode, session, onSignIn, onSignOut }) {
+ const items=[["home","Home"],["properties","Properties"],["dashboard","Dashboard"],["agreements","Agreements"],["payments","Payments"],["about","About"]];
+ return <header className="navbar"><button className="brand" onClick={goHome}><span className="logo">🌱</span><span>EcoRent</span></button><nav>{items.map(([key,label])=><button key={key} className={page===key?"active":""} onClick={()=>go(key)}>{label}</button>)}</nav><div className="nav-actions"><span className={demoMode?"mode-pill demo":"mode-pill live"}><span className="mode-dot"/>{demoMode?"Demo Mode":"Supabase Live"}</span>{session?<button className="auth-button" onClick={onSignOut}>Sign out</button>:<button className="auth-button" onClick={onSignIn}>Sign in</button>}</div></header>;
+}

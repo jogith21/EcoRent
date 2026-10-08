@@ -1,0 +1,5 @@
+import PageTitle from "../components/PageTitle";
+import Empty from "../components/Empty";
+import AgreementRow from "../components/AgreementRow";
+import { agreementStatus } from "../utils";
+export default function AgreementsPage({ state, go, setSelected, setPage, uploadDocument }) { return <main className="page"><PageTitle eyebrow="RECORDS" title="Rental agreements" subtitle="Keep agreements, tenants, payments and signed documents organized."/>{state.agreements.length===0?<Empty text="No agreements yet" action="Create your first digital rental agreement." onClick={()=>go("properties")}/>:<div className="records">{state.agreements.map(a=>{const property=state.properties.find(p=>p.id===a.property_id);const tenant=state.tenants.find(t=>t.id===a.tenant_id);const docs=state.documents.filter(d=>d.agreement_id===a.id);const liveStatus=agreementStatus(a.end_date);return <AgreementRow key={a.id} agreement={a} property={property} tenant={tenant} docs={docs} liveStatus={liveStatus} onOpen={()=>{setSelected(property);setPage("agreement");}} onUpload={file=>uploadDocument(a.id,file)}/>})}</div>}</main>; }

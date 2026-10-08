@@ -1,0 +1,2 @@
+import AgreementBuilder from "../components/AgreementBuilder";
+export default function AgreementPage({ selected, go, state, profile, addTenant, submitAgreement }) { return <main className="page agreement-page"><button className="back" onClick={()=>go("details")}>← Back to property</button><AgreementBuilder property={selected} tenants={state.tenants} profile={profile} onAddTenant={addTenant} onSubmit={submitAgreement}/></main>; }
